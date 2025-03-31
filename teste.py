@@ -1,4 +1,5 @@
 import time
+import matplotlib.pyplot as plt
 
 def busca_linear(lista, alvo):
     operacao = 0  # Contador de operações
@@ -8,7 +9,7 @@ def busca_linear(lista, alvo):
             return i, operacao  # Retorna a posição e o número de operações
     return -1, operacao  # Se não encontrar, retorna -1 e o número de operações
 
-
+print()
 # Melhor caso O(1)
 numeros_pequenos = [15, 10, 5, 20, 25]
 alvo = 15
@@ -34,8 +35,8 @@ print(f"Número total de operações: {operacoes2}\n")
 
 
 # Pior caso O(n)
-numeros_grandes = list(range(1, 10000))  # Lista de 1 a 9999
-alvo = 9999
+numeros_grandes = list(range(1, 10001))  # Lista de 1 a 10000
+alvo =1000
 inicio3 = time.perf_counter()
 resultado, operacoes3 = busca_linear(numeros_grandes, alvo)
 fim3 = time.perf_counter()
@@ -46,8 +47,8 @@ print(f"Número total de operações: {operacoes3}\n")
 
 
 # Pior caso O(n) (número não encontrado)
-numeros_mega_grande = list(range(1, 1000000))  # Lista de 1 a 999999
-alvo = 1000001  # Número que não existe na lista
+numeros_mega_grande = list(range(1, 1000001))  # Lista de 1 a 1000000
+alvo = 1000001 
 inicio4 = time.perf_counter()
 resultado, operacoes4 = busca_linear(numeros_mega_grande, alvo)
 fim4 = time.perf_counter()
@@ -59,3 +60,28 @@ else:
     print(f"Tempo de execução: {tempo_execucao4:.6f} segundos")
     print(f"Resultado(posição): O número desejado não está na lista.")
     print(f"Número total de operações: {operacoes4}")
+
+
+
+# Dados do melhor caso e caso médio
+casos = ['Melhor Caso', 'Caso Médio','Pior caso']
+tempos = [tempo_execucao1, tempo_execucao2,tempo_execucao3]  # Usando o tempo de execução para o melhor e caso médio
+operacoes = [operacoes1, operacoes2,operacoes3]  # Usando o número de operações para o melhor e caso médio
+
+# Criando o gráfico para tempo de execução
+plt.figure(figsize=(10, 5))
+
+plt.subplot(1, 2, 1)
+plt.bar(casos, tempos, color='lightcoral')
+plt.title('Tempo de Execução por Caso')
+plt.ylabel('Tempo em milionésimos')
+
+# Criando o gráfico para número de operações
+plt.subplot(1, 2, 2)
+plt.bar(casos, operacoes, color='lightgreen')
+plt.title('Número de Operações por Caso')
+plt.ylabel('Número de Operações')
+
+# Ajustando o layout
+plt.tight_layout()
+plt.show()
