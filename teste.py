@@ -74,7 +74,7 @@ plt.figure(figsize=(10, 5))
 plt.subplot(1, 2, 1)
 plt.bar(casos, tempos, color='lightcoral')
 plt.title('Tempo de Execução por Caso')
-plt.ylabel('Tempo em milionésimos')
+plt.ylabel('Tempo')
 
 # Criando o gráfico para número de operações
 plt.subplot(1, 2, 2)
